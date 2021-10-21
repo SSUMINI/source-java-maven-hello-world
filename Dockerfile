@@ -1,5 +1,5 @@
 from tomcat:9-jdk11
 
-copy webapp.war /usr/local/tomcat/webapps/
+copy webapp.war /usr/local/tomcat/webapps/webapp.war
 
 
