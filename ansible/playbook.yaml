@@ -18,7 +18,9 @@
   tasks:
     - name: stop exists container
       command: "docker stop tomcat-mywebapp"
+      ignore_errors: true
     - name: remove exists container
       command: "docker rm tomcat-mywebapp"
+      ignore_errors: true
     - name: Run docker
       command: "docker run -d --name tomcat-mywebapp -p 8080:8080 gkstnals24/mywebapp"
