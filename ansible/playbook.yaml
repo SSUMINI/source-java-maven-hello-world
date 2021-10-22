@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: ansible build
-      command: "docker image build -t gkstnals24/mywebapp tomcat-docker-build"
+      command: "docker image build -t gkstnals24/mywebapp ."
     - name: login docker hub
       command: "docker login"
     - name: dockerhub push
