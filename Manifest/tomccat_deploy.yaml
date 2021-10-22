@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deployment
+  labels:
+    run: tomcat-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: tomcat-deployment
+  template:
+    metadata:
+      labels:
+        run: tomcat-deployment
+    spec:
+      containers:
+      - name: tomcat-deployment
+        image: gkstnals24/mywebapp
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+---
+apiVersion: /v1
+kind: Service
+metadata:
+  name: hanssvc
+spec:
+  type: LoadBalancer
+  selector:
+    run: tomcat-deployment
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
