@@ -1,0 +1,5 @@
+[ansible_host]
+192.168.56.104 ansible_connection=local
+
+[docker_host]
+192.168.56.103

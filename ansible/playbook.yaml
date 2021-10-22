@@ -1,0 +1,22 @@
+---
+- name: ansible_host webserver build
+  hosts: ansible_host
+  tasks:
+    - name: ansible build
+      command: "docker image build -t gkstnals24/mywebapp tomcat-docker-build"
+    - name: login docker hub
+      command: "docker login"
+    - name: dockerhub push
+      command: "docker push gkstnals24/mywebapp"
+    - name: Remove build local image
+      command: "docker image rm gkstnals24/mywebapp tomcat:9-jdk11"
+
+- name: docker_host docker server build
+  hosts: docker_host
+  tasks:
+    - name: stop exists container
+      command: "docker stop tomcat-mywebapp"
+    - name: remove exists container
+      command: "docker rm tomcat-mywebapp"
+    - name: Run docker
+      command: "docker run -d --name tomcat-mywebapp -p 8080:8080 gkstnals24/mywebapp"
